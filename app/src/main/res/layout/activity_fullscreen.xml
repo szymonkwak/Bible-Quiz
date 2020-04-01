@@ -3,10 +3,145 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:background="#0099cc"
+             android:background="@color/background"
              tools:context=".FullscreenActivity">
-    <Button
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/button"/>
+
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:fitsSystemWindows="true"
+                 android:layout_margin="@dimen/margin">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/topLayout">
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <TextView
+                        android:text="1/10"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtViewNumber"
+                        android:gravity="start"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/small_font"
+                        android:textColor="@color/text1"/>
+                <TextView
+                        android:text="00"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtViewPoints"
+                        android:gravity="end"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/small_font"
+                        android:textColor="@color/text1"/>
+            </LinearLayout>
+            <TextView
+                    android:text="question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:id="@+id/txtViewQuestion"
+                    android:textSize="@dimen/large_font"
+                    android:textColor="@color/text2"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_gravity="bottom|center_vertical"
+                android:layout_height="wrap_content"
+                android:id="@+id/bottomLayout">
+            <TextView
+                    android:text="5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txtViewTimeLeft"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textSize="@dimen/small_font"
+                    android:textColor="@color/colorAccent"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ButtonsLayout1">
+                <Button
+                        android:text="Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnA"
+                        android:layout_marginEnd="@dimen/btn_margin"
+
+                        android:background="@color/button"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/medium_font"
+
+                        android:layout_weight="1"/>
+                <Button
+                        android:text="Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnB"
+
+                        android:background="@color/button"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/medium_font"
+
+                        android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ButtonsLayout2"
+                    android:layout_marginBottom="@dimen/margin"
+                    android:layout_marginTop="@dimen/margin">
+                <Button
+                        android:text="Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnC"
+                        android:layout_marginEnd="@dimen/btn_margin"
+
+                        android:background="@color/button"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/medium_font"
+
+                        android:layout_weight="1"/>
+                <Button
+                        android:text="Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnD"
+
+                        android:background="@color/button"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/medium_font"
+
+                        android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout android:id="@+id/progress"
+                          style="?metaButtonBarStyle"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="bottom|center_horizontal"
+                          android:background="@color/black_overlay"
+                          android:orientation="horizontal"
+                          tools:ignore="UselessParent">
+
+
+                <ProgressBar
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/progressBar"
+                        android:layout_weight="1"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </FrameLayout>
+
 </FrameLayout>

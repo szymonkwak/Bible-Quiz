@@ -26,4 +26,12 @@ public class Question {
     public int getDifficulty() {
         return difficulty;
     }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public String getAnswer(Character answer){
+        return answerMap.get(answer);
+    }
 }
