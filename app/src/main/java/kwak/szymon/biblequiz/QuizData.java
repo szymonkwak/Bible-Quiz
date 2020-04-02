@@ -33,6 +33,10 @@ public class QuizData {
         return actualQuizQuestionList;
     }
 
+    public Question getActiveQuestion(int questionNumber){
+        return actualQuizQuestionList.get(questionNumber);
+    }
+
     public QuizData() {
         int i = 1;
         int r;

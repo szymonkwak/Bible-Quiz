@@ -1,9 +1,11 @@
 package kwak.szymon.biblequiz;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,9 +14,13 @@ import java.util.Objects;
 
 public class FullscreenActivity extends AppCompatActivity {
 
+    int activeQuestionNumber, totalPoints;
     QuizData quizData;
+    Dialog dialog;
+    PopUpWindow popUpWindow;
     Button btnA, btnB, btnC, btnD;
     TextView txtQuestion, txtQuestionNumber, txtPoints, txtTimeLeft;
+    ProgressBar progressBarTimeLeft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +33,13 @@ public class FullscreenActivity extends AppCompatActivity {
         getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimaryDark));
 
         //Inicjalizacja puli pytań (10)
-        quizData = new QuizData();
+        //  quizData = new QuizData();
+        activeQuestionNumber = 1;
+        totalPoints = 0;
+
+        //Potrzebuję do otwarcia pop_up_window
+        dialog = new Dialog(this);
+        popUpWindow = new PopUpWindow();
 
         //region findViewsById
         btnA = findViewById(R.id.btnA);
@@ -38,31 +50,32 @@ public class FullscreenActivity extends AppCompatActivity {
         txtQuestionNumber = findViewById(R.id.txtViewNumber);
         txtPoints = findViewById(R.id.txtViewPoints);
         txtTimeLeft = findViewById(R.id.txtViewTimeLeft);
+        progressBarTimeLeft = findViewById(R.id.progressBar);
         //endregion
 
         //region setOnClickListner's
         btnA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getAnswer('A');
+                popUpWindow.showPopUpWindowIfCorrect(dialog);
             }
         });
         btnB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getAnswer('B');
+                //getAnswer(quizData.getActiveQuestion(activeQuestionNumber),'B');
             }
         });
         btnC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getAnswer('C');
+                //getAnswer('C');
             }
         });
         btnD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getAnswer('D');
+                //getAnswer('D');
             }
         });
         //endregion
@@ -70,29 +83,29 @@ public class FullscreenActivity extends AppCompatActivity {
 
     }
 
+
     void setQuestionOnScreen(QuizData quizData, int questionNumber) {
-        txtQuestion.setText(quizData.getQuizQuestionList().get(questionNumber).getQuestion());
+        txtQuestion.setText(quizData.getActiveQuestion(questionNumber).getQuestion());
         String qNumber = questionNumber + "//10";
         txtQuestionNumber.setText(qNumber);
-//        txtPoints = ;
+        String points = totalPoints + " pkt.";
+        txtPoints.setText(points);
         txtTimeLeft.setVisibility(View.INVISIBLE);
+        progressBarTimeLeft.setVisibility(View.INVISIBLE);
 
-        btnA.setText(quizData.getQuizQuestionList().get(questionNumber).getAnswer('A'));
-        btnB.setText(quizData.getQuizQuestionList().get(questionNumber).getAnswer('B'));
-        btnC.setText(quizData.getQuizQuestionList().get(questionNumber).getAnswer('C'));
-        btnD.setText(quizData.getQuizQuestionList().get(questionNumber).getAnswer('D'));
+
+        btnA.setText(quizData.getActiveQuestion(questionNumber).getAnswer('A'));
+        btnB.setText(quizData.getActiveQuestion(questionNumber).getAnswer('B'));
+        btnC.setText(quizData.getActiveQuestion(questionNumber).getAnswer('C'));
+        btnD.setText(quizData.getActiveQuestion(questionNumber).getAnswer('D'));
     }
 
-    void getAnswer(Character givenAnswer) {
-        computePoints(givenAnswer);
-        showSummary(givenAnswer);
-    }
-
-    private int computePoints(Question question, Character givenAnswer) {
-        int result = 0;
+    void getAnswer(Question question, Character givenAnswer) {
         if (question.isAnswerCorrect(givenAnswer)) {
-            result = 1;
+            popUpWindow.showPopUpWindowIfCorrect(dialog);
+            totalPoints++;
+        } else {
+            popUpWindow.showPopUpWindowIfIncorrect(dialog);
         }
-        return result;
     }
 }
