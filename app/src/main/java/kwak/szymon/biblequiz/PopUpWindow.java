@@ -22,8 +22,8 @@ public class PopUpWindow {
     @SuppressLint("SetTextI18n")
     public void showPopUpWindowIfIncorrect(final Dialog dialog) {
         preparePopUp(dialog);
-        txtSummary.setText("Dokładnie tak! \n To jest właściwa odpowiedź!");
-        btnConfirm.setText("Ok! Dawaj kolejne");
+        txtSummary.setText("Niestety nie \n Może następnym razem pójdzie Ci lepiej?");
+        btnConfirm.setText("Nie poddaję się, następne proszę");
         dialog.show();
     }
 

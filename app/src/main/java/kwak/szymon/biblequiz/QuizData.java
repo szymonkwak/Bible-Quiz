@@ -38,6 +38,7 @@ public class QuizData {
     }
 
     public QuizData() {
+        actualQuizQuestionList = new ArrayList<>();
         int i = 1;
         int r;
         Random random = new Random();

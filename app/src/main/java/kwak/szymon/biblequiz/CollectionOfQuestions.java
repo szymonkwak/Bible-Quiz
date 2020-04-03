@@ -4,7 +4,8 @@ package kwak.szymon.biblequiz;
 
 public class CollectionOfQuestions {
 
-    public static final int NUMBER_OF_QUESTIONS = 10;
+    //O jeden mniej, bo index listy zaczyna się od 0
+    public static final int NUMBER_OF_QUESTIONS = 9;
 
 
     static final int diff1 = 1;
@@ -19,7 +20,7 @@ public class CollectionOfQuestions {
 
     static final int diff3 = 1;
     static final String question3 = "Kto był pierwszym powołanym przez Jezusa apostołem?";
-    static final Character corrAsnw3 = 'C';
+    static final Character corrAsnw3 = 'A';
     static final String[] answers3 = {"Andrzej","Szymon","Jan","Mateusz"};
 
     static final int diff4 = 1;

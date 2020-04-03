@@ -32,15 +32,6 @@ public class FullscreenActivity extends AppCompatActivity {
         //Zmiana koloru navigationBar'a
         getWindow().setNavigationBarColor(getResources().getColor(R.color.colorPrimaryDark));
 
-        //Inicjalizacja puli pytań (10)
-        //  quizData = new QuizData();
-        activeQuestionNumber = 1;
-        totalPoints = 0;
-
-        //Potrzebuję do otwarcia pop_up_window
-        dialog = new Dialog(this);
-        popUpWindow = new PopUpWindow();
-
         //region findViewsById
         btnA = findViewById(R.id.btnA);
         btnB = findViewById(R.id.btnB);
@@ -57,42 +48,58 @@ public class FullscreenActivity extends AppCompatActivity {
         btnA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                popUpWindow.showPopUpWindowIfCorrect(dialog);
+                getAnswer(quizData.getActiveQuestion(activeQuestionNumber), 'A');
+                setQuestionOnScreen(quizData,activeQuestionNumber);
             }
         });
         btnB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //getAnswer(quizData.getActiveQuestion(activeQuestionNumber),'B');
+                getAnswer(quizData.getActiveQuestion(activeQuestionNumber), 'B');
+                setQuestionOnScreen(quizData,activeQuestionNumber);
+
             }
         });
         btnC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //getAnswer('C');
+                getAnswer(quizData.getActiveQuestion(activeQuestionNumber), 'C');
+                setQuestionOnScreen(quizData,activeQuestionNumber);
+
             }
         });
         btnD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //getAnswer('D');
+                getAnswer(quizData.getActiveQuestion(activeQuestionNumber), 'D');
+                setQuestionOnScreen(quizData,activeQuestionNumber);
+
             }
         });
         //endregion
 
+        //Inicjalizacja puli pytań (10)
+        quizData = new QuizData();
+        activeQuestionNumber = 0;
+        totalPoints = 0;
+        //Wyświetlenie pierwszego pytania na ekranie
+        setQuestionOnScreen(quizData, activeQuestionNumber);
+
+        //Potrzebuję do otwarcia pop_up_window
+        dialog = new Dialog(this);
+        popUpWindow = new PopUpWindow();
 
     }
 
 
     void setQuestionOnScreen(QuizData quizData, int questionNumber) {
         txtQuestion.setText(quizData.getActiveQuestion(questionNumber).getQuestion());
-        String qNumber = questionNumber + "//10";
+        String qNumber = questionNumber + 1 + "/10";
         txtQuestionNumber.setText(qNumber);
         String points = totalPoints + " pkt.";
         txtPoints.setText(points);
         txtTimeLeft.setVisibility(View.INVISIBLE);
         progressBarTimeLeft.setVisibility(View.INVISIBLE);
-
 
         btnA.setText(quizData.getActiveQuestion(questionNumber).getAnswer('A'));
         btnB.setText(quizData.getActiveQuestion(questionNumber).getAnswer('B'));
@@ -103,9 +110,12 @@ public class FullscreenActivity extends AppCompatActivity {
     void getAnswer(Question question, Character givenAnswer) {
         if (question.isAnswerCorrect(givenAnswer)) {
             popUpWindow.showPopUpWindowIfCorrect(dialog);
+            activeQuestionNumber++;
             totalPoints++;
         } else {
             popUpWindow.showPopUpWindowIfIncorrect(dialog);
+            activeQuestionNumber++;
         }
     }
+
 }

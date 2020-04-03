@@ -13,10 +13,10 @@ public class Question {
         this.question = question;
         this.correctAnswer = correctAnswer;
         answerMap = new HashMap<>(4);
-        answerMap.put('A', answers[1]);
-        answerMap.put('B', answers[2]);
-        answerMap.put('C', answers[3]);
-        answerMap.put('D', answers[4]);
+        answerMap.put('A', answers[0]);
+        answerMap.put('B', answers[1]);
+        answerMap.put('C', answers[2]);
+        answerMap.put('D', answers[3]);
     }
 
     public boolean isAnswerCorrect(Character answer) {
