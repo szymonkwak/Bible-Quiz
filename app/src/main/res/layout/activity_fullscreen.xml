@@ -3,8 +3,11 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:background="@color/background"
              tools:context=".FullscreenActivity">
+    <ImageView android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/bible"
+               android:scaleType="centerCrop"/>
 
     <FrameLayout android:layout_width="match_parent"
                  android:layout_height="match_parent"
@@ -12,10 +15,10 @@
                  android:layout_margin="@dimen/margin">
 
         <LinearLayout
+                android:id="@+id/topLayout"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/topLayout">
+                android:layout_height="wrap_content">
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -29,6 +32,14 @@
                         android:layout_weight="1"
                         android:textSize="@dimen/small_font"
                         android:textColor="@color/text1"/>
+                <TextView
+                        android:text="5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtViewTimeLeft"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:textSize="@dimen/medium_font"
+                        android:textColor="@color/colorAccent"/>
                 <TextView
                         android:text="00"
                         android:layout_width="match_parent"
@@ -46,22 +57,17 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:id="@+id/txtViewQuestion"
                     android:textSize="@dimen/large_font"
+                    android:layout_marginTop="@dimen/margin_large"
                     android:textColor="@color/text2"/>
         </LinearLayout>
+
         <LinearLayout
+                android:id="@+id/bottomLayout"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_gravity="bottom|center_vertical"
-                android:layout_height="wrap_content"
-                android:id="@+id/bottomLayout">
-            <TextView
-                    android:text="5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/txtViewTimeLeft"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:textSize="@dimen/small_font"
-                    android:textColor="@color/colorAccent"/>
+                android:layout_height="wrap_content">
+
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -74,18 +80,18 @@
                         android:id="@+id/btnA"
                         android:layout_marginEnd="@dimen/btn_margin"
 
-                        android:background="@color/button"
+                        android:background="@drawable/buttonstyle"
                         android:textAllCaps="false"
                         android:textSize="@dimen/medium_font"
 
-                        android:layout_weight="1" android:onClick="btnAClick"/>
+                        android:layout_weight="1"/>
                 <Button
                         android:text="Button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/btnB"
 
-                        android:background="@color/button"
+                        android:background="@drawable/buttonstyle"
                         android:textAllCaps="false"
                         android:textSize="@dimen/medium_font"
 
@@ -105,7 +111,7 @@
                         android:id="@+id/btnC"
                         android:layout_marginEnd="@dimen/btn_margin"
 
-                        android:background="@color/button"
+                        android:background="@drawable/buttonstyle"
                         android:textAllCaps="false"
                         android:textSize="@dimen/medium_font"
 
@@ -116,7 +122,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/btnD"
 
-                        android:background="@color/button"
+                        android:background="@drawable/buttonstyle"
                         android:textAllCaps="false"
                         android:textSize="@dimen/medium_font"
 
@@ -134,6 +140,9 @@
 
                 <ProgressBar
                         style="?android:attr/progressBarStyleHorizontal"
+
+                        android:max="100"
+                        android:progress="100"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/progressBar"

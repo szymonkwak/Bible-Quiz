@@ -2,6 +2,8 @@ package kwak.szymon.biblequiz;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,13 +24,14 @@ public class PopUpWindow {
     @SuppressLint("SetTextI18n")
     public void showPopUpWindowIfIncorrect(final Dialog dialog) {
         preparePopUp(dialog);
-        txtSummary.setText("Niestety nie \n Może następnym razem pójdzie Ci lepiej?");
+        txtSummary.setText("Niestety nie... \n Może następnym razem będzie lepiej?");
         btnConfirm.setText("Nie poddaję się, następne proszę");
         dialog.show();
     }
 
     private void preparePopUp(final Dialog dialog) {
         dialog.setContentView(R.layout.pop_up_window);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         btnConfirm = dialog.findViewById(R.id.btnConfirm);
         txtSummary = dialog.findViewById(R.id.txtSummary);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
