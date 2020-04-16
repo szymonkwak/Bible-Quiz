@@ -2,9 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_gravity="center"
-
               android:background="@drawable/popupstyle"
-
               android:padding="@dimen/margin"
               android:layout_width="450dp"
               android:layout_height="140dp">
@@ -14,7 +12,6 @@
               android:layout_gravity="center"
               android:id="@+id/txtSummary"
               android:textAlignment="center"
-              android:text="test \n testowaniedalszejlini"
               android:textSize="@dimen/medium_font"/>
 
     <Button android:layout_width="wrap_content"
@@ -24,9 +21,7 @@
             android:textAllCaps="false"
             android:layout_gravity="center"
             android:textSize="@dimen/medium_font"
-            android:background="@drawable/buttonstyle"
-            android:text="ok"/>
-
+            android:background="@drawable/buttonstyle"/>
 
 
 </LinearLayout>

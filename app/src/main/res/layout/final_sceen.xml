@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/background"
+             >
+
+    <FrameLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/txtFinalScr"
+                      android:textSize="@dimen/large_font"
+                      android:gravity="center"
+                      android:textAlignment="center"
+                      android:layout_marginBottom="@dimen/margin_large"
+            />
+
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:textSize="@dimen/small_font"
+                      android:textAlignment="center"
+                      android:gravity="center"
+                      android:layout_marginTop="@dimen/margin"
+                      android:text="Czy chcesz zagrać jeszcze raz?"
+            />
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="@dimen/margin"
+                          android:layout_gravity="center"
+                          android:gravity="center"
+                          android:orientation="horizontal">
+
+                <Button android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin"
+                        android:id="@+id/btnAgain"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/medium_font"
+                        android:background="@drawable/buttonstyle"
+                        android:text="Jeszcze raz"
+                />
+
+                <Button android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin"
+                        android:id="@+id/btnCloseApp"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/medium_font"
+                        android:background="@drawable/buttonstyle"
+                        android:text="Wyjdź"
+                />
+
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+</FrameLayout>

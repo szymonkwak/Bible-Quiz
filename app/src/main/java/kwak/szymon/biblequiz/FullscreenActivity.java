@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.Objects;
 
 
@@ -16,7 +15,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
     int activeQuestionNumber, totalPoints;
     QuizData quizData;
-    Dialog dialog;
+    Dialog dialog, finalDialog;
     PopUpWindow popUpWindow;
     Button btnA, btnB, btnC, btnD;
     TextView txtQuestion, txtQuestionNumber, txtPoints, txtTimeLeft;
@@ -49,14 +48,14 @@ public class FullscreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getAnswer(quizData.getActiveQuestion(activeQuestionNumber), 'A');
-                setQuestionOnScreen(quizData,activeQuestionNumber);
+                setQuestionOnScreen(quizData, activeQuestionNumber);
             }
         });
         btnB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getAnswer(quizData.getActiveQuestion(activeQuestionNumber), 'B');
-                setQuestionOnScreen(quizData,activeQuestionNumber);
+                setQuestionOnScreen(quizData, activeQuestionNumber);
 
             }
         });
@@ -64,7 +63,7 @@ public class FullscreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getAnswer(quizData.getActiveQuestion(activeQuestionNumber), 'C');
-                setQuestionOnScreen(quizData,activeQuestionNumber);
+                setQuestionOnScreen(quizData, activeQuestionNumber);
 
             }
         });
@@ -72,7 +71,7 @@ public class FullscreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getAnswer(quizData.getActiveQuestion(activeQuestionNumber), 'D');
-                setQuestionOnScreen(quizData,activeQuestionNumber);
+                setQuestionOnScreen(quizData, activeQuestionNumber);
 
             }
         });
@@ -87,6 +86,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
         //Potrzebuję do otwarcia pop_up_window
         dialog = new Dialog(this);
+        finalDialog = new Dialog(this,R.style.FinalFullScreen);
         popUpWindow = new PopUpWindow();
 
     }
@@ -108,14 +108,42 @@ public class FullscreenActivity extends AppCompatActivity {
     }
 
     void getAnswer(Question question, Character givenAnswer) {
-        if (question.isAnswerCorrect(givenAnswer)) {
-            popUpWindow.showPopUpWindowIfCorrect(dialog);
-            activeQuestionNumber++;
-            totalPoints++;
+        if (activeQuestionNumber == 9) {
+            showFinalScreen(finalDialog);
         } else {
-            popUpWindow.showPopUpWindowIfIncorrect(dialog);
-            activeQuestionNumber++;
+            if (question.isAnswerCorrect(givenAnswer)) {
+                popUpWindow.showPopUpWindowIfCorrect(dialog);
+                activeQuestionNumber++;
+                totalPoints++;
+            } else {
+                popUpWindow.showPopUpWindowIfIncorrect(dialog);
+                activeQuestionNumber++;
+            }
         }
+    }
+
+    void showFinalScreen(Dialog dialog){
+        dialog.setContentView(R.layout.final_sceen);
+        Button btnAgain = dialog.findViewById(R.id.btnAgain);
+        Button btnCloseApp = dialog.findViewById(R.id.btnCloseApp);
+        TextView txtFinalScr = dialog.findViewById(R.id.txtFinalScr);
+
+        String s = "Ilość zdobytych punktów: " + totalPoints;
+        txtFinalScr.setText(s);
+
+        btnAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onCreate(new Bundle());
+            }
+        });
+        btnCloseApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finishAndRemoveTask();
+            }
+        });
+        dialog.show();
     }
 
 }
